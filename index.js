@@ -43,7 +43,35 @@ const starterPrompt = () => {
 
 }
 
-//need starter prompt here
+const viewAllEmployees = () => {
+
+};
+
+const viewAllRoles = () => {
+
+};
+
+const viewAllDepartments = () => {
+
+};
+
+const addAnEmployee = () => {
+
+};
+
+const addARole = () => {
+
+};
+
+const addADepartment = () => {
+
+};
+
+const updateAnEmployeeRole = () => {
+
+};
+
+
 
 
 
