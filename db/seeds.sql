@@ -20,5 +20,26 @@ VALUES ("Service Manager", 65000, 3);
 INSERT INTO role (title, salary, department_id)
 VALUES ("General Manager", 80000, 3);
 
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Celix", "Ramos", 1);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Cody", "Fincher", 1);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Jerome", "Clyburn", 4);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Veronica", "Stringfield", 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Cami", "Jenkins", 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Cody", "Theroux", 5);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Hunter", "Ueberoth", 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Taniya", "Hargrove", 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Candice", "Hotte", 5);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES("Gregg", "Bibik", 6);
+
 
     
