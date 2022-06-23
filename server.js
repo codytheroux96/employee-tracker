@@ -1,6 +1,9 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const table = require("console.table");
+const { updateAnEmployeeRole } = require("./utils/update");
+const { viewAllEmployees, viewAllRoles, viewAllDepartments} = require("./utils/view");
+const { addAnEmployee, addARole, addADepartment} = require("./utils/add");
 
 const db = mysql.createConnection({
       host: "localhost",
@@ -42,34 +45,6 @@ const starterPrompt = () => {
     })
 
 }
-
-const viewAllEmployees = () => {
-
-};
-
-const viewAllRoles = () => {
-
-};
-
-const viewAllDepartments = () => {
-
-};
-
-const addAnEmployee = () => {
-
-};
-
-const addARole = () => {
-
-};
-
-const addADepartment = () => {
-
-};
-
-const updateAnEmployeeRole = () => {
-
-};
 
 
 
