@@ -7,7 +7,18 @@ VALUES  ("Front Of House");
 INSERT INTO department (name)
 VALUES  ("Management");
 
-
+INSERT INTO role (title, salary, department_id)
+VALUES ("Cook", 35000, 1);
+INSERT INTO role (title, salary, department_id)
+VALUES ("Server", 40000, 2);
+INSERT INTO role (title, salary, department_id)
+VALUES ("Bartender", 50000, 2);
+INSERT INTO role (title, salary, department_id)
+VALUES ("Kitchen Manager", 70000, 3);
+INSERT INTO role (title, salary, department_id)
+VALUES ("Service Manager", 65000, 3);
+INSERT INTO role (title, salary, department_id)
+VALUES ("General Manager", 80000, 3);
 
 
     
