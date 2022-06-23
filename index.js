@@ -10,6 +10,13 @@ const db = mysql.createConnection({
       database: "employeesDB",
 });
 
+db.connect(function(err){
+    if (err) throw err;
+    starterPrompt();
+});
+
+//need starter prompt here
+
 
 
 
