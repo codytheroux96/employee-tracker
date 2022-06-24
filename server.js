@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const init = require("./utils/init");
+const inquirer = require("inquirer")
 require("console.table");
 
 const db = mysql.createConnection({
@@ -14,41 +14,11 @@ db.connect(function(err){
 starterPrompt();
 });
 
-
-const starterPrompt = () => {
-    inquirer.prompt({
-        type: "list",
-        name: "query",
-        message: "Which task would you like to perform?",
-        choices: [
-            "View All Employees",
-            "View All Roles",
-            "View All Departments",
-            "Add An Employee",
-            "Add A Role",
-            "Add A Department",
-            "Update An Employee Role",
-            "Exit"
-        ]
-    })
-    .then(data => {
-        if (data.starterPrompt === "View All Employees") {return viewAllEmployees(); };
-        if (data.starterPrompt === "View All Roles") {return viewAllRoles(); };
-        if (data.starterPrompt === "View All Departments") {return viewAllDepartments(); };
-        if (data.starterPrompt === "Add An Employee") {return addAnEmployee(); };
-        if (data.starterPrompt === "Add A Role") {return addARole(); };
-        if (data.starterPrompt === "Add A Department") {return addADepartment(); };
-        if (data.starterPrompt === "Update An Employee Role") {return updateAnEmployeeRole(); };
-        if (data.starterPrompt === "Exit") {db.end(); };
-
-    })
-
-}
 const viewAllEmployees = () => {
     db.query('SELECT * FROM employee', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
-        console.loginit();
+        starterPrompt();
       });
 };
 
@@ -56,7 +26,7 @@ const viewAllRoles = () => {
     db.query('SELECT * FROM role', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
-       init();
+       starterPrompt();
       });
 };
 
@@ -64,7 +34,7 @@ const viewAllDepartments = () => {
     db.query('SELECT * FROM department', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
-       init();
+        starterPrompt();
       });
 };
 
@@ -82,6 +52,37 @@ const addADepartment = () => {
 
 
 const updateAnEmployeeRole = () => {
+
+};
+
+
+const starterPrompt = () => {
+    inquirer.prompt({
+        type: "list",
+        name: "query",
+        message: "Which task would you like to perform?",
+        choices: [
+            "View All Employees",
+            "View All Roles",
+            "View All Departments",
+            "Add An Employee",
+            "Add A Role",
+            "Add A Department",
+            "Update An Employee Role",
+            "Exit",
+        ]
+    })
+    .then(data => {
+        if (data.query === "View All Employees") {viewAllEmployees(); };
+        if (data.query === "View All Roles") {viewAllRoles(); };
+        if (data.query === "View All Departments") {viewAllDepartments(); };
+        if (data.query === "Add An Employee") {return addAnEmployee(); };
+        if (data.query === "Add A Role") {addARole(); };
+        if (data.query === "Add A Department") {addADepartment(); };
+        if (data.query === "Update An Employee Role") {updateAnEmployeeRole(); };
+        if (data.query === "Exit") {db.end(); };
+
+    })
 
 };
 
