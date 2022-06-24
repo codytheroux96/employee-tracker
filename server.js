@@ -39,7 +39,7 @@ const viewAllDepartments = () => {
 };
 
 const addAnEmployee = () => {
-    console.log("Inserting an employee!")
+    console.log("Let's add an employee!")
 
     const query =
         `SELECT r.id, r.title, r.salary 
