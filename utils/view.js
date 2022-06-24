@@ -1,8 +1,16 @@
+const mysql = require("mysql2");
 const inquirer = require("inquirer");
-const { updateAnEmployeeRole } = require("./utils/update");
-const { addAnEmployee, addARole, addADepartment} = require("./utils/add");
-require("../server")
+//const { updateAnEmployeeRole } = require("./utils/update");
+//const { addAnEmployee, addARole, addADepartment} = require("./utils/add");
+const server = require("../server")
 require("console.table");
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: '',
+    database: "employees_db",
+});
+
 
 
 const viewAllEmployees = () => {

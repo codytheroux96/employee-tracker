@@ -9,9 +9,8 @@ const db = mysql.createConnection({
       host: "localhost",
       user: "root",
       password: '',
-      database: "employeesDB",
-},
-console.log(`Connected to the employeesDB`));
+      database: "employees_db",
+});
 
 db.connect(function(err){
     if (err) throw err;
@@ -21,7 +20,7 @@ const starterPrompt = () => {
     inquirer.prompt({
         type: "list",
         name: "query",
-        message: "Which task would you like to do?",
+        message: "Which task would you like to perform?",
         choices: [
             "View All Employees",
             "View All Roles",
@@ -95,9 +94,6 @@ const starterPrompt = () => {
     // })
 
 }
-
-
-
 
 
 
