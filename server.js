@@ -20,7 +20,7 @@ db.connect(function(err){
 const starterPrompt = () => {
     inquirer.prompt({
         type: "list",
-        name: "task",
+        name: "query",
         message: "Which task would you like to do?",
         choices: [
             "View All Employees",
@@ -34,7 +34,7 @@ const starterPrompt = () => {
         ]
     })
     .then((answers) => {
-        switch (answers.task){
+        switch (answers.query){
             case "View All Employees": {
                 viewAllEmployees();
                 break;
@@ -78,8 +78,7 @@ const starterPrompt = () => {
         }
         switch (answers.task){
             case "Exit": {
-                db.end();
-                break;
+                process.exit();
             }
         }
     })
