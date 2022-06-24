@@ -1,9 +1,6 @@
 const mysql = require("mysql2");
-const inquirer = require("inquirer");
+const init = require("./utils/init");
 require("console.table");
-const { updateAnEmployeeRole } = require("./utils/update");
-const { viewAllEmployees, viewAllRoles, viewAllDepartments} = require("./utils/view");
-const { addAnEmployee, addARole, addADepartment} = require("./utils/add");
 
 const db = mysql.createConnection({
       host: "localhost",
@@ -14,8 +11,10 @@ const db = mysql.createConnection({
 
 db.connect(function(err){
     if (err) throw err;
-    starterPrompt();
+starterPrompt();
 });
+
+
 const starterPrompt = () => {
     inquirer.prompt({
         type: "list",
@@ -32,68 +31,60 @@ const starterPrompt = () => {
             "Exit"
         ]
     })
-    .then((answers) => {
-        switch (answers.query){
-            case "View All Employees": {
-                viewAllEmployees();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "View All Roles": {
-                viewAllRoles();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "View All Departments": {
-                viewAllDepartments();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "Add An Employee": {
-                addAnEmployee();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "Add A Role": {
-                addARole();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "Add A Department": {
-                addADepartment();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "Update An Employee Role": {
-                updateAnEmployeeRole();
-                break;
-            }
-        }
-        switch (answers.task){
-            case "Exit": {
-                process.exit();
-            }
-        }
-    })
-    // .then(data => {
-    //     if (data.starterPrompt === "View All Employees") {return viewAllEmployees(); };
-    //     if (data.starterPrompt === "View All Roles") {return viewAllRoles(); };
-    //     if (data.starterPrompt === "View All Departments") {return viewAllDepartments(); };
-    //     if (data.starterPrompt === "Add An Employee") {return addAnEmployee(); };
-    //     if (data.starterPrompt === "Add A Role") {return addARole(); };
-    //     if (data.starterPrompt === "Add A Department") {return addADepartment(); };
-    //     if (data.starterPrompt === "Update An Employee Role") {return updateAnEmployeeRole(); };
-    //     if (data.starterPrompt === "Exit") {db.end(); };
+    .then(data => {
+        if (data.starterPrompt === "View All Employees") {return viewAllEmployees(); };
+        if (data.starterPrompt === "View All Roles") {return viewAllRoles(); };
+        if (data.starterPrompt === "View All Departments") {return viewAllDepartments(); };
+        if (data.starterPrompt === "Add An Employee") {return addAnEmployee(); };
+        if (data.starterPrompt === "Add A Role") {return addARole(); };
+        if (data.starterPrompt === "Add A Department") {return addADepartment(); };
+        if (data.starterPrompt === "Update An Employee Role") {return updateAnEmployeeRole(); };
+        if (data.starterPrompt === "Exit") {db.end(); };
 
-    // })
+    })
 
 }
+const viewAllEmployees = () => {
+    db.query('SELECT * FROM employee', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+        console.loginit();
+      });
+};
+
+const viewAllRoles = () => {
+    db.query('SELECT * FROM role', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+       init();
+      });
+};
+
+const viewAllDepartments = () => {
+    db.query('SELECT * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+       init();
+      });
+};
+
+const addAnEmployee = () => {
+
+};
+
+const addARole = () => {
+
+};
+
+const addADepartment = () => {
+
+};
+
+
+const updateAnEmployeeRole = () => {
+
+};
+
 
 
 
