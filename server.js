@@ -203,9 +203,35 @@ const addADepartment = () => {
 
 
 const updateAnEmployeeRole = () => {
+    console.log("Let's update an employee's role!")
 
-};
+    const query =
+        `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS DEPARTMENT, r.salary FROM employee e
+    JOIN role r
+    ON e.role_id = r.id
+    JOIN department d
+    ON d.id = r.department_id
+    JOIN employee m
+    ON m.id = e.manager_id`
 
+    db.query(query, function (err, res) {
+        if (err) throw (err);
+        const employeeChoices = res.map(({ id, first_name, last_name }) => {
+            ({
+                value: id, name: `${first_name} ${last_name}`
+            })
+
+            console.table(res);
+
+            roleArray(employeeChoices);
+
+        })
+    });
+}
+
+const rolearray = (employeeChoices) => {
+    
+}
 
 const starterPrompt = () => {
     inquirer.prompt({
