@@ -53,40 +53,39 @@ const addAnEmployee = () => {
         }));
 
         console.table(res);
-        console.log("RoleToInsert!");
 
         promptInsert(roleChoices);
     });
 }
 
 const promptInsert = (roleChoices) => {
-    inquirer .prompt([
-            {
-                type: "input",
-                name: "first_name",
-                message: "What is the employee's first name?"
-            },
-            {
-                type: "input",
-                name: "last_name",
-                message: "What is the employee's last name?"
-            },
-            {
-                type: "list",
-                name: "roleId",
-                message: "What is the employee's role?",
-                choices: roleChoices
-            },
-            {
-              type: "input",
-              name: "managerID",
-              message: "What is the employee's manager_id?",
-            }
-        ])
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "first_name",
+            message: "What is the employee's first name?"
+        },
+        {
+            type: "input",
+            name: "last_name",
+            message: "What is the employee's last name?"
+        },
+        {
+            type: "list",
+            name: "roleId",
+            message: "What is the employee's role?",
+            choices: roleChoices
+        },
+        {
+            type: "input",
+            name: "managerID",
+            message: "What is the employee's manager_id?",
+        }
+    ])
         .then(function (answer) {
             console.table(answer);
 
-            var query = `INSERT INTO employee SET ?`
+            const query = `INSERT INTO employee SET ?`
             db.query(query,
                 {
                     first_name: answer.first_name,
@@ -98,6 +97,7 @@ const promptInsert = (roleChoices) => {
                     if (err) throw err;
 
                     console.table(res);
+                    console.log("Done!")
 
                     starterPrompt();
                 });
@@ -106,8 +106,71 @@ const promptInsert = (roleChoices) => {
 }
 
 const addARole = () => {
+    console.log("Let's add a role!")
 
-};
+    const query =
+        `SELECT d.id, d.name, r.salary AS budget
+          FROM employee e
+          JOIN role r
+          ON e.role_id = r.id
+          JOIN department d
+          ON d.id = r.department_id
+          GROUP BY d.id, d.name`
+
+    db.query(query, function (err, res) {
+        if (err) throw err;
+        const departmentChoices = res.map(({ id, name }) => ({
+            value: id, name: `${id} ${name}`
+        }));
+
+        console.table(res);
+
+        promptAddRole(departmentChoices);
+    });
+}
+
+function promptAddRole(departmentChoices) {
+
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "roleTitle",
+                message: "What is the title of the role?"
+            },
+            {
+                type: "input",
+                name: "roleSalary",
+                message: "What is the salary for this role?"
+            },
+            {
+                type: "list",
+                name: "departmentId",
+                message: "What department does this role belong to?",
+                choices: departmentChoices
+            },
+        ])
+        .then(function (answer) {
+
+            const query = `INSERT INTO role SET ?`
+
+            db.query(query, {
+                title: answer.title,
+                salary: answer.salary,
+                department_id: answer.departmentId
+            },
+                function (err, res) {
+                    if (err) throw err;
+
+                    console.table(res);
+                    console.log("Done!")
+
+                    starterPrompt();
+                });
+
+        });
+}
+
 
 const addADepartment = () => {
 
