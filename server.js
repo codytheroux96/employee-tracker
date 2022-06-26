@@ -235,7 +235,7 @@ const roleArray = (employeeChoices) => {
         if (err) throw (err);
 
         roleChoices = res.map(({ id, title, salary }) => ({
-            value: title, title: `${title}`, salary: `${salary}`
+            value: id, title: `${title}`, salary: `${salary}`
         }));
 
         console.table(res)
