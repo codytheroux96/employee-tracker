@@ -42,7 +42,7 @@ const addAnEmployee = () => {
     console.log("Let's add an employee!")
 
     const query =
-        `SELECT r.id, r.title, r.salary 
+        `SELECT r.id, r.title, r.salary
             FROM role r`
 
     db.query(query, function (err, res) {
@@ -51,7 +51,8 @@ const addAnEmployee = () => {
         const roleChoices = res.map(({ id, title, salary }) => ({
             value: id, title: `${title}`, salary: `${salary}`
         }));
-
+        
+        
         console.table(res);
 
         promptInsert(roleChoices);
@@ -79,7 +80,7 @@ const promptInsert = (roleChoices) => {
         {
             type: "list",
             name: "managerID",
-            message: "What is the employee's manager_id?",
+            message: "What is the employee's manager id?",
             choices: ["3", "6", "9", "10"],
         }
     ])
@@ -199,7 +200,7 @@ const addADepartment = () => {
             )
         })
 
-};
+}
 
 
 const updateAnEmployeeRole = () => {
