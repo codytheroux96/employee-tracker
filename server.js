@@ -216,16 +216,13 @@ const updateAnEmployeeRole = () => {
 
     db.query(query, function (err, res) {
         if (err) throw (err);
-        const employeeChoices = res.map(({ id, first_name, last_name }) => {
-            ({
-                value: id, name: `${first_name} ${last_name}`
-            })
+        const employeeChoices = res.map(({ id, first_name, last_name }) => ({
+            value: id, name: `${first_name} ${last_name}`
+        }));
 
-            console.table(res);
+        console.table(res);
 
-            roleArray(employeeChoices);
-
-        })
+        roleArray(employeeChoices);
     });
 }
 
@@ -238,7 +235,7 @@ const roleArray = (employeeChoices) => {
         if (err) throw (err);
 
         roleChoices = res.map(({ id, title, salary }) => ({
-            value: id, title: `${title}`, salary: `${salary}`
+            value: title, title: `${title}`, salary: `${salary}`
         }));
 
         console.table(res)
@@ -274,7 +271,7 @@ const employeeRolePrompt = (employeeChoices, roleChoices) => {
                     if (err) throw err;
 
                     console.table(res);
-                    console.log("DOne!");
+                    console.log("Done!");
 
                     starterPrompt();
                 });
