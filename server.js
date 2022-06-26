@@ -129,7 +129,7 @@ const addARole = () => {
     });
 }
 
-function promptAddRole(departmentChoices) {
+const promptAddRole = (departmentChoices) => {
 
     inquirer
         .prompt([
