@@ -229,9 +229,58 @@ const updateAnEmployeeRole = () => {
     });
 }
 
-const rolearray = (employeeChoices) => {
-    
+const roleArray = (employeeChoices) => {
+    const query =
+        `SELECT r.id, r.title, r.salary 
+    FROM role r`
+
+    db.query(query, function (err, res) {
+        if (err) throw (err);
+
+        roleChoices = res.map(({ id, title, salary }) => ({
+            value: id, title: `${title}`, salary: `${salary}`
+        }));
+
+        console.table(res)
+
+        employeeRolePrompt(employeeChoices, roleChoices);
+    }
+    )
 }
+
+const employeeRolePrompt = (employeeChoices, roleChoices) => {
+
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "employeeId",
+            message: "Which employee's role would you like to change?",
+            choices: employeeChoices
+        },
+        {
+            type: "list",
+            name: "roleId",
+            message: "What is the new role you want to give this employee?",
+            choices: roleChoices
+        },
+    ])
+        .then(function (answer) {
+
+            const query = `UPDATE employee SET role_id = ? WHERE id = ?`
+
+            db.query(query,
+                [answer.roleId, answer.employeeId],
+                function (err, res) {
+                    if (err) throw err;
+
+                    console.table(res);
+                    console.log("DOne!");
+
+                    starterPrompt();
+                });
+        });
+}
+
 
 const starterPrompt = () => {
     inquirer.prompt({
