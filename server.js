@@ -77,9 +77,10 @@ const promptInsert = (roleChoices) => {
             choices: roleChoices
         },
         {
-            type: "input",
+            type: "list",
             name: "managerID",
             message: "What is the employee's manager_id?",
+            choices: ["3", "6", "9", "10"],
         }
     ])
         .then(function (answer) {

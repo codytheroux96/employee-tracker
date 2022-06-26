@@ -33,9 +33,9 @@ VALUES("Cami", "Jenkins", 3, 6);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES("Cody", "Theroux", 5, 10);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES("Hunter", "Ueberoth", 2, 7);
+VALUES("Hunter", "Ueberoth", 2, 9);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES("Taniya", "Hargrove", 2, 7);
+VALUES("Taniya", "Hargrove", 2, 9);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES("Candice", "Hotte", 5, 10);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
