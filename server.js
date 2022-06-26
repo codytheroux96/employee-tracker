@@ -185,7 +185,7 @@ const addADepartment = () => {
             const query = `INSERT INTO department SET ?`
 
             db.query(query, {
-                name: answer.dapartmentName
+                name: answer.departmentName
             },
                 function (err, res) {
                     if (err) throw (err);
