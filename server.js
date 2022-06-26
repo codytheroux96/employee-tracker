@@ -155,8 +155,8 @@ const promptAddRole = (departmentChoices) => {
             const query = `INSERT INTO role SET ?`
 
             db.query(query, {
-                title: answer.title,
-                salary: answer.salary,
+                title: answer.roleTitle,
+                salary: answer.roleSalary,
                 department_id: answer.departmentId
             },
                 function (err, res) {
