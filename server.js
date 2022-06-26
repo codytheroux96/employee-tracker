@@ -131,25 +131,24 @@ const addARole = () => {
 
 const promptAddRole = (departmentChoices) => {
 
-    inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "roleTitle",
-                message: "What is the title of the role?"
-            },
-            {
-                type: "input",
-                name: "roleSalary",
-                message: "What is the salary for this role?"
-            },
-            {
-                type: "list",
-                name: "departmentId",
-                message: "What department does this role belong to?",
-                choices: departmentChoices
-            },
-        ])
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "roleTitle",
+            message: "What is the title of the role?"
+        },
+        {
+            type: "input",
+            name: "roleSalary",
+            message: "What is the salary for this role?"
+        },
+        {
+            type: "list",
+            name: "departmentId",
+            message: "What department does this role belong to?",
+            choices: departmentChoices
+        },
+    ])
         .then(function (answer) {
 
             const query = `INSERT INTO role SET ?`
@@ -173,6 +172,31 @@ const promptAddRole = (departmentChoices) => {
 
 
 const addADepartment = () => {
+    console.log("Let's add a department!")
+
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "departmentName",
+            message: "What is the name of the department?"
+        },
+    ])
+        .then(function (answer) {
+            const query = `INSERT INTO department SET ?`
+
+            db.query(query, {
+                name: answer.dapartmentName
+            },
+                function (err, res) {
+                    if (err) throw (err);
+
+                    console.table(res)
+                    console.log("Done!")
+
+                    starterPrompt();
+                }
+            )
+        })
 
 };
 
