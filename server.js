@@ -77,12 +77,6 @@ const promptInsert = (roleChoices) => {
             message: "What is the employee's role?",
             choices: roleChoices
         },
-        {
-            type: "list",
-            name: "managerID",
-            message: "What is the employee's manager id?",
-            choices: ["3", "6", "9", "10"],
-        }
     ])
         .then(function (answer) {
             console.table(answer);
@@ -93,7 +87,6 @@ const promptInsert = (roleChoices) => {
                     first_name: answer.first_name,
                     last_name: answer.last_name,
                     role_id: answer.roleId,
-                    manager_id: answer.managerId,
                 },
                 function (err, res) {
                     if (err) throw err;
@@ -111,7 +104,7 @@ const addARole = () => {
     console.log("Let's add a role!")
 
     const query =
-        `SELECT d.id, d.name, r.salary AS budget
+        `SELECT d.id, d.name, r.salary
           FROM employee e
           JOIN role r
           ON e.role_id = r.id
