@@ -36,6 +36,7 @@ const viewAllDepartments = () => {
         console.table(results);
         starterPrompt();
     });
+
 };
 
 const addAnEmployee = () => {
@@ -104,7 +105,7 @@ const addARole = () => {
     console.log("Let's add a role!")
 
     const query =
-        `SELECT d.id, d.name, r.salary
+        `SELECT d.id, d.name, r.salary 
           FROM employee e
           JOIN role r
           ON e.role_id = r.id
